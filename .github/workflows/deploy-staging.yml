@@ -1,0 +1,39 @@
+name: Deploy Staging
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm install
+      - name: Build assets
+        run: npm run build
+      - name: Sync to staging server
+        uses: easingthemes/ssh-deploy@v2.2.11
+        with:
+          ssh-private-key: ${{ secrets.STAGING_SSH_KEY }}
+          remote-user: ${{ secrets.STAGING_USER }}
+          server-ip: ${{ secrets.STAGING_HOST }}
+          remote-path: ${{ secrets.STAGING_PATH }}
+          local-path: '.'
+      - name: Run WP-CLI tasks
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.STAGING_HOST }}
+          username: ${{ secrets.STAGING_USER }}
+          key: ${{ secrets.STAGING_SSH_KEY }}
+          script: |
+            cd ${{ secrets.STAGING_PATH }}
+            wp theme activate cheasy
+            wp plugin activate cheasy-web3 cheasy-seo-gen
+            wp plugin activate woocommerce
+            wp plugin activate redis-cache
+            wp redis enable

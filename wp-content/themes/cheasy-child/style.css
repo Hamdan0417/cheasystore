@@ -1,0 +1,9 @@
+/*
+Theme Name: Cheasy Child
+Template: cheasy
+Version: 0.1.0
+*/
+
+body {
+  border-top: 4px solid var(--cheasy-secondary);
+}
