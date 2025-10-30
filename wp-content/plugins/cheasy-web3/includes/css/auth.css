@@ -1,0 +1,12 @@
+.cheasy-wallet-login {
+  margin: 16px 0;
+}
+
+.cheasy-wallet-trigger {
+  background: linear-gradient(90deg, #FF6A00, #1464F4);
+  border: none;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 999px;
+  cursor: pointer;
+}

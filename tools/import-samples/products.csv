@@ -1,0 +1,3 @@
+name,sku,brand,price,currency,stock_status,category,images,tags
+"Smart WiFi LED Bulb","CHEASY-LED-001","Cheasy Home",12.99,USD,in_stock,"Home & Kitchen > Smart Home","https://example.com/led-bulb.jpg","smart,lighting"
+"Wireless Earbuds Pro","CHEASY-AUD-002","Cheasy Audio",49.99,USD,in_stock,"Electronics > Audio","https://example.com/earbuds.jpg","audio,wireless"
