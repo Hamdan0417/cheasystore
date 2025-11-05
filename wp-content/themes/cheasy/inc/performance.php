@@ -11,6 +11,7 @@ function cheasy_performance_init() {
 add_action( 'wp_head', 'cheasy_output_preconnects', 1 );
 add_action( 'wp_head', 'cheasy_output_critical_css', 2 );
 add_filter( 'script_loader_tag', 'cheasy_defer_non_essential_scripts', 10, 3 );
+add_filter( 'style_loader_src', 'cheasy_append_font_display', 9, 2 );
 add_filter( 'style_loader_src', 'cheasy_remove_query_strings', 10, 2 );
 }
 add_action( 'after_setup_theme', 'cheasy_performance_init' );
@@ -52,6 +53,14 @@ return '<script src="' . esc_url( $src ) . '" defer></script>';
 }
 
 return $tag;
+}
+
+function cheasy_append_font_display( $src, $handle ) {
+if ( false !== strpos( $src, 'fonts.googleapis.com' ) && false === strpos( $src, 'display=' ) ) {
+$src = add_query_arg( 'display', 'swap', $src );
+}
+
+return $src;
 }
 
 function cheasy_remove_query_strings( $src ) {
