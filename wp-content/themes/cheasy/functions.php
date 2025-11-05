@@ -11,6 +11,7 @@ require_once CHEASY_THEME_DIR . '/inc/menus.php';
 require_once CHEASY_THEME_DIR . '/inc/performance.php';
 require_once CHEASY_THEME_DIR . '/inc/security.php';
 require_once CHEASY_THEME_DIR . '/inc/seo.php';
+require_once CHEASY_THEME_DIR . '/inc/media.php';
 
 if ( ! function_exists( 'cheasy_setup' ) ) {
 function cheasy_setup() {
